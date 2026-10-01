@@ -23,3 +23,10 @@ X + Y
 - when thinking about the user being able to input details to predict the gender, I had to consider the nature of pythons input. It normally turns input to strings, so i had to typecast the variables to numerical data types. eg: height - int, weight - float, shoe size - int.
 - having the input wasnt enough for the model to predict it, becuase the prediction model was taking in list input. Because of that, I had to append each of the input variables after collecting the input, keeping the structure in mind.
 - the clf.predict() expects multiple rows in a 2D structure, so even if were only predicting one person, we have to wrap the list inside another list. ***[[user_data]]***
+
+# after pushing the initial v2
+
+- i decided to use an external data source, instead of hard coded values
+- i created a csv file and added the initial 11 examples
+- i loaded the csv file
+- 

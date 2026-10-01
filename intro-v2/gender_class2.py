@@ -1,18 +1,23 @@
 # this is an improvement on the previous gender classification model which uses hard coded values.
-
+import pandas as pd
 from sklearn import tree
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold
 from sklearn.metrics import accuracy_score
-from sklearn.model_selection import StratifiedKFold
+
+data = pd.read_csv("intro-v2/gender_data.csv")  # read the data from a CSV file
+print(data)
+
+X = data[['height', 'weight', 'shoe_size']].values  # features
+Y = data['gender'].values  # target variable
 
 # the tree submodule allows us to build a decision tree
 # A decision tree is a machine-learning model structured like a flowchart that uses a series of learned questions/splits to arrive at a prediction.
 
 # [height, weight, shoe size]
 
-X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40], [190, 90, 47], [175, 64, 39], [177, 70, 40], [159, 55, 37], [171, 75, 42], [181, 85, 43]]
+# X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40], [190, 90, 47], [175, 64, 39], [177, 70, 40], [159, 55, 37], [171, 75, 42], [181, 85, 43]]
 
-Y = ['male', 'female', 'female', 'female', 'male', 'male', 'female', 'male', 'female', 'male', 'male']
+# Y = ['male', 'female', 'female', 'female', 'male', 'male', 'female', 'male', 'female', 'male', 'male']
 
 # clf = tree.DecisionTreeClassifier()  # create a decision tree classifier
 
