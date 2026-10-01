@@ -1,8 +1,9 @@
 # this is an improvement on the previous gender classification model which uses hard coded values.
 
 from sklearn import tree
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import StratifiedKFold
 
 # the tree submodule allows us to build a decision tree
 # A decision tree is a machine-learning model structured like a flowchart that uses a series of learned questions/splits to arrive at a prediction.
@@ -30,3 +31,22 @@ prediction = clf.predict(X_test)  # predict the gender of the test data
 print(prediction)
 accuracy = accuracy_score(Y_test, prediction)
 print(accuracy)
+
+scores = cross_val_score(clf, X, Y, cv=5)  # perform cross-validation to evaluate the model's performance
+print(scores)
+scores = cross_val_score(clf, X, Y, cv=StratifiedKFold(n_splits=5))
+print(scores)
+print(f"Mean accuracy: {scores.mean()}")  # print the mean accuracy of the model across all folds
+
+
+# handling user inptu
+
+height = int(input("Enter your height in cm: "))
+weight = float(input("Enter your weight in kg: "))
+shoe_size = int(input("Enter your shoe size: "))
+
+user_data = [height, weight, shoe_size] # creating a list of the inputs
+
+# predicting the gender of the user based on their inputs
+user_prediction = clf.predict([user_data])
+print(f"The predicted gender is: {user_prediction[0]}")  # print the predicted gender of the user
